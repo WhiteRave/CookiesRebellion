@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/Home">
+
+    <fragment
+        android:id="@+id/calendar"
+        android:name="com.example.myapplication2.calendar"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/Home"
+        android:name="com.example.myapplication2.dom"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_dom" />
+    <fragment
+        android:id="@+id/Menu"
+        android:name="com.example.myapplication2.zalupa"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_zalupa" />
+    <fragment
+        android:id="@+id/Settings"
+        android:name="com.example.myapplication2.nastroyki"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_nastroyki" />
+    <fragment
+        android:id="@+id/fullscreen"
+        android:name="com.example.myapplication2.spisok"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_spisok" />
+</navigation>
