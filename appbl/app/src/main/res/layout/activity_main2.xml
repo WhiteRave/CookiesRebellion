@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userNo"
+    android:layout_width="330dp"
+    android:layout_height="64dp"
+    android:backgroundTint="#A3A3A3"
+    android:hint="Введите название списка"
+    android:minHeight="48dp"
+    android:textAlignment="textStart"
+    android:textColor="#ffffff"
+    android:textStyle="italic"
+    android:translationX="25dp" />

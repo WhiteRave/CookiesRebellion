@@ -14,8 +14,9 @@
         android:title="Главная" />
     <item
         android:id="@+id/fullscreen"
-        android:icon="@drawable/icons8___48"
-        android:title="Список" />
+        android:icon="@drawable/icons8___49"
+        android:title="Список"
+        />
     <item
         android:id="@+id/Settings"
         android:icon="@drawable/baseline_settings_24"
