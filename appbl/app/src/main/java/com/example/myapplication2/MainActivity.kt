@@ -13,17 +13,25 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
+import android.view.MenuItem
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication2.datathnig.AppDatabase
+import com.example.myapplication2.datathnig.TaskAdapter
+import com.example.myapplication2.datathnig.TaskDao
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
+import com.example.myapplication2.spisochek
 
 
 
@@ -32,7 +40,12 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
         setContentView(R.layout.activity_main)
+
 
         if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQUEST_CODE)
@@ -44,6 +57,10 @@ class MainActivity : AppCompatActivity() {
             }
             val token =task.result
             Log.e("TAG", "Token -> $token")
+
+
+
+
         }
 
 
@@ -51,5 +68,37 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
         navView.setupWithNavController(navController)
 
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.calendar -> {
+                    navController.navigate(R.id.calendar)
+                    true
+                }
+                R.id.Menu -> {
+                    navController.navigate(R.id.Menu)
+                    true
+                }
+                R.id.Home -> {
+                    navController.navigate(R.id.Home)
+                    true
+                }
+                R.id.fullscreen -> {
+                    navController.navigate(R.id.fullscreen)
+                    true
+                }
+                R.id.Settings -> {
+                    navController.navigate(R.id.Settings)
+                    true
+                }
+                else -> false
+            }
+        }
+
+
+
+
     }
+
+
+
 }

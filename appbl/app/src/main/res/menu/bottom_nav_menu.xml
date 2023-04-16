@@ -7,7 +7,7 @@
     <item
         android:id="@+id/Menu"
         android:icon="@drawable/icons8__50"
-        android:title="Залупа" />
+        android:title="Раздел" />
     <item
         android:id="@+id/Home"
         android:icon="@drawable/baseline_home_24"

@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/Menu"
-        android:name="com.example.myapplication2.zalupa"
+        android:name="com.example.myapplication2.nezn"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_zalupa" >
+        tools:layout="@layout/fragment_nezn" >
     </fragment>
     <fragment
         android:id="@+id/Settings"
@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_cheklist_to_spisochek"
             app:destination="@id/spisochek" />
+        <action
+            android:id="@+id/action_cheklist_to_BlankFragment"
+            app:destination="@id/BlankFragment" />
     </fragment>
     <fragment
         android:id="@+id/cheklist2"
@@ -92,6 +95,15 @@
         tools:layout="@layout/fragment_spisochek" >
         <action
             android:id="@+id/action_spisochek_to_cheklist"
+            app:destination="@id/cheklist" />
+    </fragment>
+    <fragment
+        android:id="@+id/BlankFragment"
+        android:name="com.example.myapplication2.BlankFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_BlankFragment_to_cheklist"
             app:destination="@id/cheklist" />
     </fragment>
 </navigation>

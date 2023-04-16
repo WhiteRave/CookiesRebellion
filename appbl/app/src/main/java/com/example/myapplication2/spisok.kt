@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 
 // TODO: Rename parameter arguments, choose names that match
@@ -65,5 +66,8 @@ class spisok : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_fullscreen_to_importnant)
         }
         return view;
+        
     }
+
+
 }

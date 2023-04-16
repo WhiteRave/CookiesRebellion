@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="5dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".cheklist"
-    >
+    tools:context=".spisochek">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:translationY="350dp">
-
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardCornerRadius="10dp"
+        android:focusable="false"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:context=".spisochek">
 
         <LinearLayout
-            android:layout_width="319dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#424242"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/mTitle"
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:layout_width="319dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
-                android:text="Заголовок"
-                android:textSize="19sp"
-                android:textStyle="bold" />
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:padding="10dp">
 
+                <TextView
+                    android:id="@+id/mTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Заголовок"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="?attr/actionBarItemBackground"
+                android:backgroundTint="#424242"
+                android:src="@drawable/baseline_more_vert_24"
+                app:tint="@color/white"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:src="@drawable/baseline_more_vert_24"
-            app:tint="@color/white" />
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

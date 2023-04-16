@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
-    tools:context=".cheklist">
+    tools:context=".BlankFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/todoListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="58dp"
-        android:backgroundTint="@color/design_default_color_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tekstik"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="52dp"
+        android:text="Список без названия"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView1" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -56,42 +59,15 @@
         app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:hapticFeedbackEnabled="false"
-        android:insetTop="5dp"
-        android:insetBottom="5dp"
-        android:text="Cоздать список"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:icon="@drawable/baseline_create_24"
-        app:iconPadding="5dp"
-        app:iconTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:rippleColor="@color/white"
-        tools:ignore="DuplicateClickableBoundsCheck,MissingConstraints" />
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:background="#424242"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck,UnknownId"
+        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
