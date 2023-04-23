@@ -9,6 +9,6 @@
     android:hint="Введите название списка"
     android:minHeight="48dp"
     android:textAlignment="textStart"
-    android:textColor="#ffffff"
+    android:textColor="?android:attr/textColorPrimaryNoDisable"
     android:textStyle="italic"
     android:translationX="25dp" />

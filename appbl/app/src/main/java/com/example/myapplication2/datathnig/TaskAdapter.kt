@@ -44,20 +44,8 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = taskList?.get(position)
-        holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("taskText", currentTask?.name)
-            val navController = Navigation.findNavController(holder.itemView)
-            navController.navigate(R.id.action_cheklist_to_BlankFragment, bundle)
-        }
         if (currentTask != null) {
             holder.bind(currentTask)
-            holder.taskNameTextView.tag = currentTask.itemId
-            holder.itemView.setOnClickListener {
-                val itemId = holder.taskNameTextView.tag as? Int
-                val taskItem = taskList?.find { it.itemId == itemId }
-                taskItem?.let { it1 -> onItemClick?.invoke(it1) }
-            }
         } else {
             holder.taskNameTextView.text = ""
         }

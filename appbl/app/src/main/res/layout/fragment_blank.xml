@@ -12,16 +12,16 @@
         android:layout_width="320dp"
         android:layout_height="60dp"
         android:layout_marginTop="52dp"
+        android:fontFamily="@font/inter_semibold"
         android:text="Список без названия"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="?android:attr/textColorPrimaryNoDisable"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -29,7 +29,7 @@
         android:layout_height="45dp"
         android:layout_weight="1"
         android:background="?attr/actionBarItemBackground"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="?android:attr/textColorPrimaryNoDisable"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -39,7 +39,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"
+        app:tint="?android:attr/textColorPrimaryNoDisable"
         tools:ignore="MissingClass,MissingConstraints,SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -48,7 +48,7 @@
         android:layout_height="45dp"
         android:layout_weight="1"
         android:background="?attr/actionBarItemBackground"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="?android:attr/textColorPrimaryNoDisable"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -56,7 +56,7 @@
         android:src="@drawable/baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"
+        app:tint="?android:attr/textColorPrimaryNoDisable"
         tools:ignore="SpeakableTextPresentCheck" />
 
 

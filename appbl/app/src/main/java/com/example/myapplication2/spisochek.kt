@@ -5,9 +5,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.TypedValue
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
@@ -18,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -85,6 +88,7 @@ class spisochek : Fragment() {
             dialog.dismiss()
         }
 
+
         builder.setNegativeButton("Отмена") { dialog, i ->
             findNavController().navigateUp()
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -95,22 +99,35 @@ class spisochek : Fragment() {
         val dialog = builder.create()
         this.dialog = dialog
         dialog.setOnShowListener {
+            val button1 = dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+            val textColor = ContextCompat.getColor(requireContext(), android.R.color.holo_purple)
+            button1.setTextColor(textColor)
+
             val button = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
             button.isEnabled = false
+            button.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+
             ed.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                 override fun afterTextChanged(s: Editable?) {
                     button.isEnabled = !s.isNullOrEmpty()
+                    if (button.isEnabled) {
+                        button.setTextColor(textColor)
+                    } else {
+                        button.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.darker_gray))
+                    }
                 }
             })
         }
 
 
 
+
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
         dialog.show()
         dialog.setCanceledOnTouchOutside(false)
+
 
 
 

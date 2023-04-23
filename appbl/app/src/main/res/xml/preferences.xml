@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:key="theme_category"
+        android:title="Тема">
+        <ListPreference
+            app:defaultValue="follow_system"
+            app:dialogIcon="@drawable/baseline_nightlight_24"
+            app:entries="@array/theme_options"
+            app:entryValues="@array/theme_values"
+            app:icon="@drawable/baseline_mode_night_24"
+            app:key="theme"
+            android:negativeButtonText="Отмена"
+            app:summary="Выберите тему приложения"
+            app:title="Тема" />
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>

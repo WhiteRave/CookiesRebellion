@@ -9,16 +9,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300sp"
-        android:fontFamily="@font/anton"
-        android:rotationY="0"
         android:text="ГЛАВНАЯ"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
         android:textSize="60sp"
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:layout_marginTop="300sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:fontFamily="@font/anton"
+        android:rotationY="0"
+        android:typeface="sans"
+        android:textAppearance="?attr/textAppearanceHeadline1"
+        android:textColor="?android:attr/textColorPrimaryNoDisable"/>
+
+
 
 
 </FrameLayout>

@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/calendar"
-        android:icon="@drawable/baseline_calendar_month_24"
+        android:icon="@drawable/__4"
         android:title="Календарь" />
     <item
         android:id="@+id/Menu"
-        android:icon="@drawable/icons8__50"
+        android:icon="@drawable/___5"
         android:title="Раздел" />
     <item
         android:id="@+id/Home"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/__6"
         android:title="Главная" />
     <item
         android:id="@+id/fullscreen"
-        android:icon="@drawable/icons8___49"
+        android:icon="@drawable/__1"
         android:title="Список"
         />
     <item
         android:id="@+id/Settings"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/__7"
         android:title="Настройки" />
 </menu>
