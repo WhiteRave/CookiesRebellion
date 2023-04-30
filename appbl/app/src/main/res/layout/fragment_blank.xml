@@ -64,8 +64,9 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:background="#424242"
+        app:layout_constraintTop_toBottomOf="@+id/tekstik"
         tools:ignore="MissingConstraints,TouchTargetSizeCheck,UnknownId"
         tools:layout_editor_absoluteX="0dp" />
 

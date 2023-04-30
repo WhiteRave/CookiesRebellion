@@ -38,12 +38,10 @@ class BlankFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_BlankFragment_to_cheklist)
         }
 
-        val sharedViewModel = activity?.run {
-            ViewModelProvider(this).get(SharedViewModel::class.java)
+        val text = arguments?.getString("text")
+        if (text != null) {
+            Text.text = text
         }
-
-        val taskText = sharedViewModel?.tasks?.value?.joinToString(", ")
-        Text.text = taskText
 
 
         return view

@@ -28,9 +28,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication2.datathnig.AppDatabase
 import com.example.myapplication2.datathnig.TaskAdapter
-import com.example.myapplication2.datathnig.TaskDao
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
@@ -83,16 +81,12 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.calendar)
                     true
                 }
-                R.id.Menu -> {
-                    navController.navigate(R.id.Menu)
-                    true
-                }
                 R.id.Home -> {
                     navController.navigate(R.id.Home)
                     true
                 }
                 R.id.fullscreen -> {
-                    navController.navigate(R.id.fullscreen)
+                    navController.navigate(R.id.cheklist)
                     true
                 }
                 R.id.Settings -> {

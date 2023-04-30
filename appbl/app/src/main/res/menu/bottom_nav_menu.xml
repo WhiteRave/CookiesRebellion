@@ -5,10 +5,6 @@
         android:icon="@drawable/__4"
         android:title="Календарь" />
     <item
-        android:id="@+id/Menu"
-        android:icon="@drawable/___5"
-        android:title="Раздел" />
-    <item
         android:id="@+id/Home"
         android:icon="@drawable/__6"
         android:title="Главная" />

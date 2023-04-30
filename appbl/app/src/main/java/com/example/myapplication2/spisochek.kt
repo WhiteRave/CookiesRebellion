@@ -1,36 +1,24 @@
 package com.example.myapplication2
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.TypedValue
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication2.cheklist
 import com.example.myapplication2.datathnig.SharedViewModel
-import com.example.myapplication2.datathnig.TaskAdapter
 import com.example.myapplication2.datathnig.TaskItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlin.random.Random
 
@@ -77,7 +65,6 @@ class spisochek : Fragment() {
             val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
             val inputText = ed.text.toString()
             sharedViewModel.inputText.value = inputText
-            val taskItem = TaskItem(name = "My Task", itemId = Random.nextInt())
 
 
 

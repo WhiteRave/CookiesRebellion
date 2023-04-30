@@ -31,25 +31,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/fullscreen"
-        android:name="com.example.myapplication2.spisok"
-        android:label="fragment_third"
-        tools:layout="@layout/fragment_spisok" >
-        <action
-            android:id="@+id/action_fullscreen_to_cheklist2"
-            app:destination="@id/cheklist" />
-        <action
-            android:id="@+id/action_fullscreen_to_idk2"
-            app:destination="@id/idk2" />
-        <action
-            android:id="@+id/action_fullscreen_to_idk"
-            app:destination="@id/idk" />
-        <action
-            android:id="@+id/action_fullscreen_to_importnant"
-            app:destination="@id/importnant" />
-
-    </fragment>
-    <fragment
         android:id="@+id/cheklist"
         android:name="com.example.myapplication2.cheklist"
         android:label="fragment_third"
