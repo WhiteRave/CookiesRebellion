@@ -31,7 +31,7 @@ class NotificationReceiver : BroadcastReceiver() {
             .setSmallIcon(R.drawable.baseline_notifications_24)
             .setContentTitle("Напоминание")
             .setContentText(message)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
 
         notificationManager.notify(0, notificationBuilder.build())

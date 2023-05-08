@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_dom" >
     </fragment>
     <fragment
-        android:id="@+id/Menu"
-        android:name="com.example.myapplication2.nezn"
-        android:label="fragment_second"
-        tools:layout="@layout/fragment_nezn" >
-    </fragment>
-    <fragment
         android:id="@+id/Settings"
         android:name="com.example.myapplication2.nastroyki"
         android:label="fragment_third"
@@ -52,24 +46,6 @@
         tools:layout="@layout/fragment_cheklist" >
     </fragment>
     <fragment
-        android:id="@+id/idk"
-        android:name="com.example.myapplication2.idk"
-        android:label="fragment_third"
-        tools:layout="@layout/fragment_idk" >
-    </fragment>
-    <fragment
-        android:id="@+id/idk2"
-        android:name="com.example.myapplication2.idk2"
-        android:label="fragment_third"
-        tools:layout="@layout/fragment_idk2" >
-    </fragment>
-    <fragment
-        android:id="@+id/importnant"
-        android:name="com.example.myapplication2.importnant"
-        android:label="fragment_third"
-        tools:layout="@layout/fragment_importnant" >
-    </fragment>
-    <fragment
         android:id="@+id/spisochek"
         android:name="com.example.myapplication2.spisochek"
         android:label="fragment_third"
@@ -77,6 +53,9 @@
         <action
             android:id="@+id/action_spisochek_to_cheklist"
             app:destination="@id/cheklist" />
+        <action
+            android:id="@+id/action_spisochek_to_BlankFragment"
+            app:destination="@id/BlankFragment" />
     </fragment>
     <fragment
         android:id="@+id/BlankFragment"

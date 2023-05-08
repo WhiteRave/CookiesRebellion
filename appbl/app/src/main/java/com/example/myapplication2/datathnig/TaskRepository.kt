@@ -8,7 +8,7 @@ import java.io.File
 class TaskRepository(private val context: Context) {
     private val gson = Gson()
     private val taskListType = object : TypeToken<List<TaskItem>>() {}.type
-    private val taskFile = File(context.filesDir, "tasks.json")
+    private val taskFile = File(context.filesDir, "tasks1.json")
 
     fun saveTasks(tasks: List<TaskItem>) {
         taskFile.writeText(gson.toJson(tasks))
@@ -20,4 +20,11 @@ class TaskRepository(private val context: Context) {
         }
         return gson.fromJson(taskFile.readText(), taskListType)
     }
+
+    fun removeTask(taskItem: TaskItem) {
+        val tasks = loadTasks().toMutableList()
+        tasks.remove(taskItem)
+        saveTasks(tasks)
+    }
 }
+

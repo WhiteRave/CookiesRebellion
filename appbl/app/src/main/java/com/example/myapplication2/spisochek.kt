@@ -13,12 +13,15 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication2.datathnig.SharedViewModel
+import com.example.myapplication2.datathnig.TaskAdapter
 import com.example.myapplication2.datathnig.TaskItem
+import com.example.myapplication2.datathnig.TaskRepository
 import com.google.android.material.navigation.NavigationView
 import kotlin.random.Random
 
@@ -29,7 +32,7 @@ class spisochek : Fragment() {
     private lateinit var Text: TextView
     private var dialog: AlertDialog? = null
     private lateinit var mContext: Context
-    private lateinit var taskViewModel: ViewModel
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,21 +62,20 @@ class spisochek : Fragment() {
         builder.setView(ed)
         builder.setTitle("Создание списка")
 
-        builder.setPositiveButton("Создать"){dialog, i ->
+        builder.setPositiveButton("Создать") { dialog, i ->
             Text.text = ed.text.toString()
 
             val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
             val inputText = ed.text.toString()
+            val bundle = Bundle()
+            bundle.putString("inputText", inputText)
             sharedViewModel.inputText.value = inputText
-
-
-
-            Text.text = inputText
-
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(ed.windowToken, 0)
             dialog.dismiss()
+            view?.let { Navigation.findNavController(it).navigate(R.id.action_spisochek_to_BlankFragment, bundle) }
         }
+
 
 
         builder.setNegativeButton("Отмена") { dialog, i ->

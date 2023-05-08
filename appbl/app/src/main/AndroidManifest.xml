@@ -36,6 +36,9 @@
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
+        <receiver android:name=".MotivationReceiver" />
+
+
 
         <service
             android:name=".notification.PushService"

@@ -4,5 +4,6 @@ data class TaskItem(
     var name: String,
     var isChecked: Boolean = false,
     var id: Int? = null,
-    var hidden: Boolean = false
+    var hidden: Boolean = false,
+    var parentId: Int? = null
 )

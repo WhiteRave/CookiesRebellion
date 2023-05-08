@@ -40,6 +40,7 @@ class cheklist : Fragment() {
     private lateinit var searchEditText: EditText
 
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         taskRepository = TaskRepository(context)
@@ -50,8 +51,8 @@ class cheklist : Fragment() {
         super.onCreate(savedInstanceState)
         taskList = taskRepository.loadTasks().toMutableList()
         adapter = TaskAdapter(taskList)
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,13 +63,10 @@ class cheklist : Fragment() {
         btn2 =view.findViewById(R.id.button)
         btn2.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_cheklist_to_spisochek)
-
         }
-        adapter.taskList = taskList
+
+        taskRepository.saveTasks(taskList)
         adapter.notifyDataSetChanged()
-
-
-
 
         return view;
     }
@@ -107,12 +105,10 @@ class cheklist : Fragment() {
 
 
 
-
-
-
-
-
         val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+
+
+
 
 
         sharedViewModel.inputText.observe(viewLifecycleOwner) { inputText ->
@@ -130,9 +126,9 @@ class cheklist : Fragment() {
                 val taskItem = TaskItem(task)
                 if (!taskList.contains(taskItem)) {
                     taskList.add(taskItem)
+                    adapter.notifyDataSetChanged()
                 }
             }
-            adapter.notifyDataSetChanged()
         }
 
 
@@ -159,13 +155,7 @@ class cheklist : Fragment() {
 
 
 
-
-
-
-
     }
-
-
 
 
     override fun onDestroyView() {
@@ -173,6 +163,7 @@ class cheklist : Fragment() {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.todoListRecyclerView)
         recyclerView?.adapter = null
         taskRepository.saveTasks(taskList)
+        adapter.notifyDataSetChanged()
 
 
     }

@@ -6,6 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".BlankFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todoListRecyclerView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="58dp"
+        android:backgroundTint="?android:attr/textColorPrimaryNoDisable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView1" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/newTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:padding="5dp"
+        android:text=""
+        android:textColor="?android:attr/textColorPrimaryNoDisable"
+        app:icon="@drawable/baseline_add_24"
+        app:iconTint="?android:attr/textColorPrimaryNoDisable"
+        app:layout_constraintBottom_toBottomOf="@+id/todoListRecyclerView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/tekstik"
