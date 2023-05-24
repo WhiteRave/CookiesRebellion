@@ -53,7 +53,7 @@ class dom : Fragment() {
     private fun is24HoursPassed(lastGenerated: Long): Boolean {
         val currentTime = System.currentTimeMillis()
         val elapsedTime = currentTime - lastGenerated
-        return elapsedTime >= TimeUnit.MINUTES.toMillis(1)
+        return elapsedTime >= TimeUnit.HOURS.toMillis(24)
     }
 
 

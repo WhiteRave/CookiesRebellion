@@ -1,8 +1,8 @@
 package com.example.myapplication2
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +11,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.PopupMenu
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.button.MaterialButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.myapplication2.datathnig.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -32,26 +27,49 @@ class cheklist : Fragment() {
     private var taskList = mutableListOf<TaskItem>()
     lateinit var adapter: TaskAdapter
     private lateinit var taskRepository: TaskRepository
-    private var isTaskListInitialized = false
     private lateinit var searchLayout: LinearLayout
     private lateinit var searchButton: ImageButton
-    private var taskSet = mutableSetOf<TaskItem>()
     private lateinit var searchCancelButton: ImageButton
     private lateinit var searchEditText: EditText
+    private var isDataLoaded = false
 
 
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        taskRepository = TaskRepository(context)
-    }
+
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        taskRepository = context?.let { TaskRepository(it) }!!
         taskList = taskRepository.loadTasks().toMutableList()
         adapter = TaskAdapter(taskList)
+        Log.d("Fragment", "onCreate called")
     }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("taskList", ArrayList(taskList))
+        Log.d("Fragment", "onSaveInstanceState called")
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            val savedTaskList = savedInstanceState.getParcelableArrayList<TaskItem>("taskList")
+            taskList.clear()
+            savedTaskList?.let { taskList.addAll(it) }
+            adapter.notifyDataSetChanged()
+            Log.d("Fragment", "onViewStateRestored called")
+        }
+    }
+
+
+
+
 
 
     override fun onCreateView(
@@ -65,8 +83,6 @@ class cheklist : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_cheklist_to_spisochek)
         }
 
-        taskRepository.saveTasks(taskList)
-        adapter.notifyDataSetChanged()
 
         return view;
     }
@@ -96,61 +112,26 @@ class cheklist : Fragment() {
         }
 
 
+        val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         val recyclerView = view.findViewById<RecyclerView>(R.id.todoListRecyclerView)
         recyclerView.addItemDecoration(ItemOffsetDecoration(16))
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-
-
-
-
-        val sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
-
-
-
-
-        sharedViewModel.inputText.observe(viewLifecycleOwner) { inputText ->
-            inputText?.let {
-                if (it.isNotBlank() && !sharedViewModel.tasks.value.orEmpty().contains(it)) {
-                    sharedViewModel.addTask(it)
-                    adapter.notifyDataSetChanged()
-                }
-            }
-        }
-
-
         sharedViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            tasks.forEach { task ->
-                val taskItem = TaskItem(task)
-                if (!taskList.contains(taskItem)) {
-                    taskList.add(taskItem)
-                    adapter.notifyDataSetChanged()
-                }
-            }
+            val newTaskList = tasks.filterNot { task -> taskList.any { it.name == task } }
+                .map { newTask -> TaskItem(newTask) }
+            taskList.addAll(newTaskList)
+            adapter.notifyItemRangeInserted(taskList.size - newTaskList.size, newTaskList.size)
         }
 
 
 
 
 
-        adapter.onItemClick = { taskItem: TaskItem ->
-            val position = taskList.indexOf(taskItem)
-            val bundle = Bundle()
-            bundle.putString("taskText", taskItem.name)
 
-            recyclerView.layoutManager?.findViewByPosition(position)?.let { itemView ->
 
-                val btna = itemView.findViewById<CardView>(R.id.card)
-                btna?.setOnClickListener{
-                    sharedViewModel?.updateTasks(taskItem.name)
-                    Navigation.findNavController(view).navigate(R.id.action_cheklist_to_BlankFragment)
-                }
-
-                Navigation.findNavController(view).navigate(R.id.action_cheklist_to_BlankFragment)
-            }
-        }
+        
 
 
 
@@ -160,13 +141,27 @@ class cheklist : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        // Сохраняем задачи в репозиторий
+        lifecycleScope.launch {
+            taskRepository.saveTasks(taskList)
+        }
+
+        // Очищаем адаптер и удаляем ссылку на RecyclerView
         val recyclerView = view?.findViewById<RecyclerView>(R.id.todoListRecyclerView)
         recyclerView?.adapter = null
-        taskRepository.saveTasks(taskList)
-        adapter.notifyDataSetChanged()
+        taskList.clear()
 
-
+        Log.d("Fragment", "onDestroyView called")
     }
+
+
+
+
+
+
+
+
 
 }
 

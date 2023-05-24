@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +23,11 @@ import com.example.myapplication2.R
 import java.util.*
 
 class TaskAdapter(
-    var taskList: MutableList<TaskItem>?,
+    open var taskList: MutableList<TaskItem>,
     var onItemClick: ((TaskItem) -> Unit)? = null,
     var onItemSelectedListener: OnItemSelectedListener? = null,
-    
-) :
-    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     interface OnItemSelectedListener {
         fun onItemSelected(taskItem: TaskItem)
@@ -35,24 +35,23 @@ class TaskAdapter(
 
     inner class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val taskNameTextView: TextView = view.findViewById(R.id.mTitle)
-        private val taskId = UUID.randomUUID().toString()
-        private val secondRecyclerView = itemView.findViewById<RecyclerView>(R.id.todoListRecyclerView1)
         private val taskImageBtn: ImageButton = view.findViewById(R.id.img)
         var taskItem: TaskItem? = null
 
-        init {
+        fun bind(taskItem: TaskItem) {
+            this.taskItem = taskItem
+            taskNameTextView.text = taskItem.name
             itemView.setOnClickListener {
-                taskItem?.let { it1 -> onItemClick?.invoke(it1) }
-                taskItem?.let { it1 -> onItemSelectedListener?.onItemSelected(it1) }
+                taskItem?.let { it -> onItemClick?.invoke(it) }
+                taskItem?.let { it -> onItemSelectedListener?.onItemSelected(it) }
             }
             taskImageBtn.setOnClickListener {
                 showPopup(taskItem!!)
             }
         }
 
-        fun bind(taskItem: TaskItem) {
-            this.taskItem = taskItem
-            taskNameTextView.text = taskItem.name
+        fun removeItem(position: Int) {
+            taskList.removeAt(position)
         }
         private fun showPopup(taskItem: TaskItem) {
             val popup = PopupMenu(itemView.context, taskImageBtn)
@@ -62,7 +61,6 @@ class TaskAdapter(
                     R.id.rename -> {
                         val builder = AlertDialog.Builder(itemView.context)
                         builder.setTitle("Переименовать список")
-
                         val input = EditText(itemView.context)
                         input.setText(taskItem.name)
                         builder.setView(input)
@@ -119,9 +117,13 @@ class TaskAdapter(
                         true
                     }
                     R.id.delete -> {
+                        Log.d("Adapter", "Before removal: taskList size = ${taskList.size}")
                         taskList?.remove(taskItem)
+                        Log.d("Adapter", "After removal: taskList size = ${taskList.size}")
                         notifyItemRemoved(position)
                         notifyItemRangeChanged(position, taskList!!.size)
+                        notifyDataSetChanged()
+                        Log.d("Adapter", "After adapter update: taskList size = ${taskList.size}")
                         true
                     }
 
@@ -156,7 +158,7 @@ class TaskAdapter(
     }
 
     override fun getItemCount(): Int {
-        return taskList?.size ?: 0
+        return taskList.size
     }
 
 

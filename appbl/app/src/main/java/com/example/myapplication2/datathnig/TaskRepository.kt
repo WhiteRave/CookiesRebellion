@@ -9,7 +9,6 @@ class TaskRepository(private val context: Context) {
     private val gson = Gson()
     private val taskListType = object : TypeToken<List<TaskItem>>() {}.type
     private val taskFile = File(context.filesDir, "tasks1.json")
-
     fun saveTasks(tasks: List<TaskItem>) {
         taskFile.writeText(gson.toJson(tasks))
     }
@@ -18,13 +17,16 @@ class TaskRepository(private val context: Context) {
         if (!taskFile.exists()) {
             return emptyList()
         }
-        return gson.fromJson(taskFile.readText(), taskListType)
+        val json = taskFile.readText()
+        if (json.isEmpty()) {
+            return emptyList()
+        }
+        return gson.fromJson(json, taskListType)
+    }
+    fun deleteTask(taskItem: TaskItem) {
+        val taskList = loadTasks().toMutableList()
+        taskList.remove(taskItem)
+        saveTasks(taskList)
     }
 
-    fun removeTask(taskItem: TaskItem) {
-        val tasks = loadTasks().toMutableList()
-        tasks.remove(taskItem)
-        saveTasks(tasks)
-    }
 }
-

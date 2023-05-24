@@ -19,10 +19,6 @@ class ViewModel : ViewModel() {
         tasks.value = tasks.value
     }
 
-    fun updateTasks(taskText: String) {
-        tasks.value = listOf(taskText)
-    }
-
 
 
 

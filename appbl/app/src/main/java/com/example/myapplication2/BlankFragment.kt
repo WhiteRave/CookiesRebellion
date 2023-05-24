@@ -8,6 +8,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication2.datathnig.ItemOffsetDecoration
+import com.example.myapplication2.datathnig.TaskItem
 import com.example.myapplication2.datathnig.TaskRepository
 import com.example.myapplication2.zadachi.MyAdapter
 import com.example.myapplication2.zadachi.SwipeToDeleteCallback
@@ -55,6 +57,7 @@ class BlankFragment : Fragment() {
         inputText = arguments?.getString("inputText", "") ?: ""
         taskList = taskRepository1.loadTasks().toMutableList()
         adapter = MyAdapter(taskList)
+        Log.d("Fragment", "onCreate called")
 
     }
 
@@ -126,6 +129,9 @@ class BlankFragment : Fragment() {
             imm.hideSoftInputFromWindow(editText.windowToken, 0)
             val taskText = editText.text.toString()
             viewModel.addTask(taskText)
+
+
+
 
 
 
@@ -214,6 +220,7 @@ class BlankFragment : Fragment() {
         recyclerView?.adapter = null
         taskRepository1.saveTasks(taskList)
         adapter.notifyDataSetChanged()
+        Log.d("Fragment", "onDestroy called")
 
 
     }

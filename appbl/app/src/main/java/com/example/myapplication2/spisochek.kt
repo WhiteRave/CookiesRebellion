@@ -32,12 +32,27 @@ class spisochek : Fragment() {
     private lateinit var Text: TextView
     private var dialog: AlertDialog? = null
     private lateinit var mContext: Context
+    lateinit var adapter: TaskAdapter
+    private var taskList = mutableListOf<TaskItem>()
+    private lateinit var taskRepository: TaskRepository
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = requireContext()
+        taskRepository = TaskRepository(context)
     }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        taskList = taskRepository.loadTasks().toMutableList()
+        adapter = TaskAdapter(taskList,)
+
+    }
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,7 +84,17 @@ class spisochek : Fragment() {
             val inputText = ed.text.toString()
             val bundle = Bundle()
             bundle.putString("inputText", inputText)
-            sharedViewModel.inputText.value = inputText
+            sharedViewModel.addTask(inputText)
+
+
+
+
+
+
+
+
+
+
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(ed.windowToken, 0)
             dialog.dismiss()
@@ -128,8 +153,5 @@ class spisochek : Fragment() {
             }
         }
     }
-
-
-
 
 }

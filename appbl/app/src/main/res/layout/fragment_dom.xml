@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
             android:fontFamily="@font/inter_semibold"
-            android:text="Приоритетные задачи:"
+            android:text="Задачи на сегодня:"
             android:textColor="@color/color3"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
